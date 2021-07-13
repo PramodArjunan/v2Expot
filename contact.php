@@ -1,20 +1,8 @@
 <?php
-// database connection code
-// $con = mysqli_connect('localhost', 'database_user', 'database_password','database');
-
-
-$con = mysqli_connect('localhost', 'root', '','v2exports');
-$txtName = $_POST['name'];
-$txtEmail = $_POST['email'];
-$txtPhone = $_POST['subject'];
-$txtMessage = $_POST['message'];
-$sql = "INSERT INTO `contact-us` (`Name`, `Email`, `Subject`, `Message`) VALUES ('$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
-// redirect to success page
-$rs = mysqli_query($con, $sql);
-
-if($rs)
-{
-	header("Location: contact-us.html");
-}
-
+$to = "pramodarjunan472@gmail.com";
+$subject = "";
+$txt = "Name:".$_POST['name']." Email".$_POST['email']." Subject".$_POST['subject']." Message".$_POST['message'];
+$headers = "From: ".$_POST['email'];
+mail($to,$subject,$txt,$headers);
+header("Location: contact-us.html");
 ?>
